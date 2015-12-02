@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Radar Livre</string>
+    <string name="title_activity_about_project">About This Project</string>
+
+    <string name="section_map">Map</string>
+    <string name="section_about_project">About this project</string>
+    <string name="section_contribute">Contribute</string>
+
+    <string name="loading_label_connecting">Connecting to server...</string>
+
+</resources>

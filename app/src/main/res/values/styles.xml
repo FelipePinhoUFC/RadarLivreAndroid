@@ -1,0 +1,14 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="DrawerTheme" parent="MaterialNavigationDrawerTheme.Light">
+        <item name="colorPrimary">@color/md_white_1000</item>
+        <item name="colorPrimaryDark">@color/md_blue_grey_500</item>
+        <item name="colorAccent">@color/md_light_blue_500</item>
+        <item name="singleAccount">true</item>
+    </style>
+
+</resources>
