@@ -17,10 +17,13 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import radarlivre.com.radarlivreandroid.R;
+import radarlivre.com.radarlivreandroid.model.Airline;
 import radarlivre.com.radarlivreandroid.model.Airplane;
 import radarlivre.com.radarlivreandroid.model.AirplaneInfo;
 import radarlivre.com.radarlivreandroid.model.AirplanePosition;
 import radarlivre.com.radarlivreandroid.network.interfaces.IUpdaterService;
+import radarlivre.com.radarlivreandroid.notification.Notify;
 
 /**
  * Created by felipe on 01/12/15.
@@ -49,6 +52,7 @@ public class UpdaterService extends Service implements IUpdaterService {
     private IUpdaterService.OnAirplanesUpdateListener onAirplanesUpdateListener = null;
 
     private List<Airplane> airplanes = new ArrayList<>();
+    private Airplane selectedAirplane = null;
 
     private Timer timer = null;
 
@@ -138,6 +142,14 @@ public class UpdaterService extends Service implements IUpdaterService {
         if(connectionState == ConnectionState.CONNECTED) {
             Log.i("DEBUG", "Requisitando rota para o avião");
             UpdaterService.this.webSocket.send(REQUEST_GET_ROUTE + "(" + airplane.getHex() + ")");
+
+            if(selectedAirplane != null) {
+                synchronized (selectedAirplane) {
+                    selectedAirplane = airplane;
+                }
+            } else {
+                selectedAirplane = airplane;
+            }
         }
     }
 
@@ -146,6 +158,10 @@ public class UpdaterService extends Service implements IUpdaterService {
         AirplanePosition pos = airplane.getLastPosition();
         airplane.getRoute().clear();
         airplane.addPosition(pos);
+
+        synchronized (selectedAirplane) {
+            selectedAirplane = null;
+        }
     }
 
     private synchronized void doReconnectWebSocket() {
@@ -187,7 +203,7 @@ public class UpdaterService extends Service implements IUpdaterService {
                                         if(s.contains(RESPONSE_REQUEST_GET_AIRPLANES)) {
                                             s = s.replace(RESPONSE_REQUEST_GET_AIRPLANES, "");
                                             AirplaneInfo[] array = new Gson().fromJson(s, AirplaneInfo[].class);
-                                            Log.i("DEBUG", "Aviões recebidos!");
+                                            Log.i("DEBUG", "Aviões recebidos: " + array.length);
                                             onAirplanesUpdate(array);
                                         } else if(s.contains(RESPONSE_REQUEST_GET_ROUTE)) {
                                             s = s.replace(RESPONSE_REQUEST_GET_ROUTE, "");
@@ -214,19 +230,16 @@ public class UpdaterService extends Service implements IUpdaterService {
     }
 
     private void onAirplanesUpdateRoute(AirplaneInfo[] airplaneInfos) {
-        if(airplaneInfos.length > 0) {
-            Airplane airplane = getAirplaneFronHex(airplaneInfos[0].getHex());
-            AirplanePosition pos = airplane.getLastPosition();
-            airplane.getRoute().clear();
-            for(AirplaneInfo info: airplaneInfos)
-                airplane.update(info);
+        synchronized (selectedAirplane) {
+            if (airplaneInfos.length > 0 && selectedAirplane != null && airplaneInfos[0].getHex().equals(selectedAirplane.getHex())) {
+                selectedAirplane.getRoute().clear();
+                for (AirplaneInfo info : airplaneInfos)
+                    selectedAirplane.update(info);
 
-            airplane.addPosition(pos);
-
-            if (onAirplanesUpdateListener != null)
-                onAirplanesUpdateListener.onAirplaneUpdated(airplane);
+                if (onAirplanesUpdateListener != null)
+                    onAirplanesUpdateListener.onAirplaneUpdated(selectedAirplane);
+            }
         }
-
     }
 
     private boolean infoContains(AirplaneInfo[] airplaneInfos, Airplane airplane) {
@@ -246,10 +259,17 @@ public class UpdaterService extends Service implements IUpdaterService {
                     airplane = new Airplane(info);
                     airplanes.add(airplane);
 
+                    // Notify new airplane
+                    notifyNewAirplane(airplane);
+
                     if (onAirplanesUpdateListener != null)
                         onAirplanesUpdateListener.onAirplaneAdded(airplane);
                 } else {
+                    if (selectedAirplane == null || !airplane.equals(selectedAirplane))
+                        airplane.getRoute().clear();
+
                     airplane.update(info);
+
                     if (onAirplanesUpdateListener != null)
                         onAirplanesUpdateListener.onAirplaneUpdated(airplane);
                 }
@@ -274,6 +294,30 @@ public class UpdaterService extends Service implements IUpdaterService {
             if(airplane.getHex().equals(hex))
                 return airplane;
         return null;
+    }
+
+    private void notifyNewAirplane(Airplane airplane) {
+        Airline airline = Airline.getAirLineFron(airplane.getId());
+
+        String stick = getBaseContext().getResources().getString(R.string.new_airplane);
+        String title = "";
+        String text = "";
+
+        if (airline == null) {
+            title = "Sem identificação";
+            text = "";
+        } else {
+            title = airline.getIdVoo() + " / " + airplane.getId();
+            text = airline.getAirline() + " - " + airline.getCountry();
+        }
+
+        Notify notify = new Notify();
+        notify.show(
+                getBaseContext(),
+                stick,
+                title,
+                text
+        );
     }
 
 }

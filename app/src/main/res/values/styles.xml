@@ -11,4 +11,24 @@
         <item name="singleAccount">true</item>
     </style>
 
+    <style name="AboutTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/md_blue_grey_800</item>
+        <item name="colorPrimaryDark">@color/md_blue_grey_500</item>
+        <item name="colorAccent">@color/md_light_blue_500</item>
+    </style>
+
+    <style name="AboutThemeTransparent" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#00000000</item>
+        <item name="colorPrimaryDark">@color/md_blue_grey_500</item>
+        <item name="colorAccent">@color/md_light_blue_500</item>
+    </style>
+
+    <style name="HidedText">
+        <item name="android:textColor">#00000000</item>
+    </style>
+
+    <style name="BlueText">
+        <item name="android:textColor">@color/md_white_1000</item>
+    </style>
+
 </resources>

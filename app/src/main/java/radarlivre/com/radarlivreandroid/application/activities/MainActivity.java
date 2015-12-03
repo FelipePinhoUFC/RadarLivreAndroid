@@ -38,6 +38,8 @@ public class MainActivity extends MaterialNavigationDrawer {
         setDefaultSectionLoaded(0);
         enableToolbarElevation();
         disableLearningPattern();
+
+        setDrawerHeaderImage(R.mipmap.ic_sky);
     }
 
 }

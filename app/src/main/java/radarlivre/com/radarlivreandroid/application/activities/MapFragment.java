@@ -148,6 +148,9 @@ public class MapFragment extends Fragment implements IUpdaterService.OnAirplanes
 
         Intent intent = new Intent("SOLVER_HELPER_SERVICE");
         intent.setPackage("radarlivre.com.radarlivreandroid");
+
+        getActivity().startService(intent);
+
         getActivity().bindService(
                 intent,
                 serviceConnection,
@@ -294,7 +297,7 @@ public class MapFragment extends Fragment implements IUpdaterService.OnAirplanes
     public void addMarker(Airplane airplane) {
         AirplanePosition position = airplane.getLastPosition();
         LatLng location = new LatLng(position.getLatitude(), position.getLongitude());
-        float angle = (float)airplane.getHead() + map.getCameraPosition().bearing;
+        float angle = (float)airplane.getHead() - map.getCameraPosition().bearing;
 
         MarkerOptions options = new MarkerOptions();
         options.position(location);
@@ -464,6 +467,7 @@ public class MapFragment extends Fragment implements IUpdaterService.OnAirplanes
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+
                     if(!airplanes.containsKey(airplane.getHex())) {
                         airplanes.put(airplane.getHex(), airplane);
                         addMarker(airplane);

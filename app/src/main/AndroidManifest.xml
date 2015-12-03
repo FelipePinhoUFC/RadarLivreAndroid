@@ -37,6 +37,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@style/AboutTheme"
             android:name=".application.activities.AboutProjectActivity"
             android:label="@string/title_activity_about_project" >
         </activity>
