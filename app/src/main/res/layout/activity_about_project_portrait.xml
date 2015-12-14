@@ -62,7 +62,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="@string/title_1"
+                    android:text="@string/project_title_1"
                     android:textSize="18dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                     android:paddingTop="16dp"/>
 
                 <TextView
-                    android:text="@string/descrip_1"
+                    android:text="@string/project_descrip_1"
                     android:textSize="12dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -83,7 +83,7 @@
 
 
                 <TextView
-                    android:text="@string/title_2"
+                    android:text="@string/project_title_2"
                     android:textSize="18dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                     android:paddingTop="16dp"/>
 
                 <TextView
-                    android:text="@string/descrip_2"
+                    android:text="@string/project_descrip_2"
                     android:textSize="12dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -103,7 +103,7 @@
                     android:paddingTop="6dp"/>
 
                 <TextView
-                    android:text="@string/title_3"
+                    android:text="@string/project_title_3"
                     android:textSize="18dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                     android:paddingTop="16dp"/>
 
                 <TextView
-                    android:text="@string/descrip_3"
+                    android:text="@string/project_descrip_3"
                     android:textSize="12dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -123,7 +123,7 @@
                     android:paddingTop="6dp"/>
 
                 <TextView
-                    android:text="@string/title_4"
+                    android:text="@string/project_title_4"
                     android:textSize="18dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                     android:paddingTop="16dp"/>
 
                 <TextView
-                    android:text="@string/descrip_4"
+                    android:text="@string/project_descrip_4"
                     android:textSize="12dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -143,7 +143,7 @@
                     android:paddingTop="6dp"/>
 
                 <TextView
-                    android:text="@string/title_5"
+                    android:text="@string/project_title_5"
                     android:textSize="18dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -153,7 +153,7 @@
                     android:paddingTop="16dp"/>
 
                 <TextView
-                    android:text="@string/descrip_5"
+                    android:text="@string/project_descrip_5"
                     android:textSize="12dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -163,7 +163,7 @@
                     android:paddingTop="6dp"/>
 
                 <TextView
-                    android:text="@string/title_6"
+                    android:text="@string/project_title_6"
                     android:textSize="18dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
@@ -173,7 +173,7 @@
                     android:paddingTop="16dp"/>
 
                 <TextView
-                    android:text="@string/descrip_6"
+                    android:text="@string/project_descrip_6"
                     android:textSize="12dp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="match_parent"
