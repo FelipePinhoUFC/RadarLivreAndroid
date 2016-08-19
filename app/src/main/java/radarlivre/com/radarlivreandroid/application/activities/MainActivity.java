@@ -13,6 +13,7 @@ import radarlivre.com.radarlivreandroid.R;
 
 public class MainActivity extends MaterialNavigationDrawer {
 
+    //
     @Override
     public void init(Bundle bundle) {
 
