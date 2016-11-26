@@ -3,29 +3,26 @@ package radarlivre.com.radarlivreandroid.model;
 /**
  * Created by felipe on 01/12/15.
  */
-public class Airline {
+public class Airline extends AbsObject {
 
-    private int id;
     private String name;
+    private String alias;
+    private String iata;
     private String icao;
+    private String callsign;
     private String country;
 
     public Airline() {
     }
 
-    public Airline(int id, String name, String icao, String country) {
-        this.id = id;
+    public Airline(long id, String name, String alias, String iata, String icao, String callsign, String country) {
+        super(id, false);
         this.name = name;
+        this.alias = alias;
+        this.iata = iata;
         this.icao = icao;
+        this.callsign = callsign;
         this.country = country;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -36,12 +33,36 @@ public class Airline {
         this.name = name;
     }
 
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public String getIata() {
+        return iata;
+    }
+
+    public void setIata(String iata) {
+        this.iata = iata;
+    }
+
     public String getIcao() {
         return icao;
     }
 
     public void setIcao(String icao) {
         this.icao = icao;
+    }
+
+    public String getCallsign() {
+        return callsign;
+    }
+
+    public void setCallsign(String callsign) {
+        this.callsign = callsign;
     }
 
     public String getCountry() {

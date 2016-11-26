@@ -29,11 +29,11 @@ public class MainActivity extends MaterialNavigationDrawer {
                 .setToActionbarSize()
                 .build();
 
-        MaterialSection mapSection = newSection(getString(R.string.section_map), mapIcon, new MapFragment());
+        MaterialSection mapSection = newSection(getString(R.string.drawer_section_map), mapIcon, new MapFragment());
         addSection(mapSection);
 
         Intent intent = new Intent(this, AboutProjectActivity.class);
-        MaterialSection aboutSection = newSection(getString(R.string.section_about_project), aboutIcon, intent);
+        MaterialSection aboutSection = newSection(getString(R.string.drawer_section_about_project), aboutIcon, intent);
         addSection(aboutSection);
 
         setDefaultSectionLoaded(0);

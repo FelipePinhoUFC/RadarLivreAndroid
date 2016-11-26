@@ -10,22 +10,22 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import radarlivre.com.radarlivreandroid.R;
 
 public class AboutProjectActivity extends AppCompatActivity {
 
-    @Bind(R.id.collapsing_toolbar_layout)
+    @BindView(R.id.collapsing_toolbar_layout)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
-    @Bind(R.id.app_bar_layout)
+    @BindView(R.id.app_bar_layout)
     AppBarLayout appBarLayout;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.mainScrollView)
+    @BindView(R.id.mainScrollView)
     NestedScrollView nestedScrollView;
 
     @Override
@@ -40,7 +40,7 @@ public class AboutProjectActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         toolbar.setTitle(R.string.app_name);
-        toolbar.setSubtitle(R.string.section_about_project);
+        toolbar.setSubtitle(R.string.drawer_section_about_project);
         setSupportActionBar(toolbar);
 
         // collapsingToolbarLayout.setTitle(getString(R.string.app_name));

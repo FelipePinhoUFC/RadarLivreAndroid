@@ -42,11 +42,8 @@
             android:label="@string/title_activity_about_project" >
         </activity>
 
-        <service android:label="UpdaterService" android:name=".network.UpdaterService" android:exported="false">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <action android:name="SOLVER_HELPER_SERVICE"/>
-            </intent-filter>
+        <service
+            android:name=".application.service.UpdaterService" android:exported="false">
         </service>
 
     </application>

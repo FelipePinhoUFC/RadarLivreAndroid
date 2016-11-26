@@ -3,9 +3,8 @@ package radarlivre.com.radarlivreandroid.model;
 /**
  * Created by felipe on 01/12/15.
  */
-public class Observation {
-    private int id;
-    private Flight flight;
+public class Observation extends AbsObject {
+    private long flight;
     private double latitude;
     private double longitude;
     private double altitude;
@@ -17,8 +16,8 @@ public class Observation {
     public Observation() {
     }
 
-    public Observation(int id, Flight flight, double latitude, double longitude, double altitude, double verticalVelocity, double horizontalVelocity, double groundTrackHeading, long timestamp) {
-        this.id = id;
+    public Observation(int id, long flight, double latitude, double longitude, double altitude, double verticalVelocity, double horizontalVelocity, double groundTrackHeading, long timestamp) {
+        super(id, false);
         this.flight = flight;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -29,19 +28,11 @@ public class Observation {
         this.timestamp = timestamp;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Flight getFlight() {
+    public long getFlight() {
         return flight;
     }
 
-    public void setFlight(Flight flight) {
+    public void setFlight(long flight) {
         this.flight = flight;
     }
 
